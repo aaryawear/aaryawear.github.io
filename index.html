@@ -1,95 +1,278 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Aarya Wear – Daily Wear Cotton Kurtis</title>
+
+<meta name="description" content="Aarya Wear offers affordable daily wear cotton kurtis. Easy WhatsApp ordering with Cash on Delivery available." />
 
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
 
 <style>
-:root { --beige:#f7f3ee; --brown:#5a3e36; }
-*{box-sizing:border-box;font-family:Poppins;margin:0}
-body{background:var(--beige);color:var(--brown)}
-a{text-decoration:none;color:inherit}
-.container{width:90%;max-width:1100px;margin:auto}
+:root {
+  --beige: #f7f3ee;
+  --brown: #5a3e36;
+}
 
-header{text-align:center;padding:1rem}
-header a{margin:0 12px;font-weight:500}
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
 
-.hero{text-align:center;padding:3.5rem 1rem}
-.hero h1{font-size:2.2rem}
-.hero p{margin:1rem 0}
-.btn{background:var(--brown);color:#fff;padding:.8rem 1.6rem;border-radius:30px;display:inline-block}
+body {
+  background: var(--beige);
+  color: var(--brown);
+  line-height: 1.6;
+}
 
-.products{display:grid;gap:1.5rem;grid-template-columns:repeat(auto-fit,minmax(200px,1fr))}
-.product-card{background:#fff;border-radius:14px;overflow:hidden;text-align:center;padding-bottom:1rem}
-.product-card img{width:100%;height:260px;object-fit:cover}
-.price{font-size:.95rem}
-.cod{font-size:.8rem;color:green}
+a {
+  text-decoration: none;
+  color: inherit;
+}
 
-footer{text-align:center;padding:2rem;font-size:.85rem}
+/* HEADER */
+header {
+  padding: 1rem;
+  text-align: center;
+  font-size: 0.95rem;
+}
+
+header a {
+  margin: 0 12px;
+  font-weight: 500;
+}
+
+.container {
+  width: 90%;
+  max-width: 1100px;
+  margin: auto;
+}
+
+/* HERO */
+.hero {
+  text-align: center;
+  padding: 3.2rem 1rem;
+}
+
+.hero h1 {
+  font-size: 2.1rem;
+  margin-bottom: 0.4rem;
+}
+
+.hero p {
+  font-size: 1rem;
+  margin-bottom: 1.4rem;
+}
+
+.btn {
+  display: inline-block;
+  background: var(--brown);
+  color: #fff;
+  padding: 0.8rem 1.6rem;
+  border-radius: 30px;
+  font-size: 0.95rem;
+}
+
+/* WHY */
+.why {
+  background: #fff;
+  padding: 2.5rem 1rem;
+  text-align: center;
+}
+
+.why h2 {
+  margin-bottom: 1.6rem;
+}
+
+.why-grid {
+  display: grid;
+  gap: 1.2rem;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+}
+
+.why-card {
+  padding: 1.2rem;
+  border-radius: 12px;
+  background: var(--beige);
+  font-size: 0.9rem;
+}
+
+/* PRODUCTS (COMPACT CARDS) */
+.products {
+  display: grid;
+  gap: 1.2rem;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+}
+
+.product-card {
+  background: #fff;
+  border-radius: 14px;
+  overflow: hidden;
+  padding-bottom: 0.5rem;
+}
+
+.product-card img,
+.product-card video {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  display: block;
+}
+
+.product-card video {
+  pointer-events: none;
+}
+
+.product-card h3 {
+  font-size: 0.9rem;
+  margin: 0.45rem 0 0.2rem;
+  padding: 0 0.5rem;
+  line-height: 1.2;
+}
+
+.product-card .price {
+  font-size: 0.85rem;
+  padding: 0 0.5rem;
+}
+
+/* TRUST */
+.trust {
+  background: #fff;
+  padding: 2rem 1rem;
+  text-align: center;
+  font-size: 0.9rem;
+}
+
+.trust span {
+  display: inline-block;
+  margin: 0.4rem 1rem;
+}
+
+/* FOOTER */
+footer {
+  text-align: center;
+  padding: 2rem 1rem;
+  font-size: 0.85rem;
+}
+
+footer a {
+  margin: 0 0.5rem;
+  font-weight: 500;
+}
 </style>
 </head>
 
 <body>
 
+<!-- HEADER -->
 <header>
   <a href="index.html">Home</a>
   <a href="catalog.html">Catalog</a>
 </header>
 
+<!-- HERO -->
 <section class="hero container">
   <h1>Aarya Wear 🌸</h1>
-  <p>Daily Wear Cotton Kurtis<br>Affordable • Comfortable • <b>COD Available</b></p>
-  <a class="btn" href="https://wa.me/91XXXXXXXXXX" target="_blank">Order on WhatsApp</a>
+  <p>
+    Daily Wear Cotton Kurtis<br>
+    Affordable • Comfortable • <strong>COD Available</strong>
+  </p>
+
+  <a
+    class="btn"
+    href="https://wa.me/91XXXXXXXXXX?text=Hi%20Aarya%20Wear%20🌸%0AI%20want%20to%20order%20a%20kurti."
+    target="_blank"
+  >
+    Order on WhatsApp
+  </a>
 </section>
 
-<section class="container">
-  <h2 style="text-align:center;margin-bottom:2rem">Best Sellers</h2>
-  <div id="bestsellers" class="products"></div>
+<!-- WHY -->
+<section class="why">
+  <div class="container">
+    <h2>Why Aarya Wear</h2>
+    <div class="why-grid">
+      <div class="why-card">Premium cotton for everyday comfort</div>
+      <div class="why-card">Affordable pricing for daily wear</div>
+      <div class="why-card">Easy WhatsApp ordering with COD</div>
+    </div>
+  </div>
+</section>
 
-  <div style="text-align:center;margin-top:2rem">
+<!-- BEST SELLERS -->
+<section class="container" style="padding:2.5rem 0;">
+  <h2 style="text-align:center;margin-bottom:1.8rem;">Best Sellers</h2>
+  <div id="bestseller-list" class="products"></div>
+
+  <div style="text-align:center;margin-top:2rem;">
     <a href="catalog.html" class="btn">View All Kurtis</a>
   </div>
 </section>
 
+<!-- TRUST -->
+<section class="trust">
+  <span>✔ Cash on Delivery</span>
+  <span>✔ Pan-India Delivery</span>
+  <span>✔ Size Support on WhatsApp</span>
+</section>
+
+<!-- FOOTER -->
 <footer>
-  <a href="catalog.html">Catalog</a> |
-  <a href="https://wa.me/91XXXXXXXXXX">WhatsApp</a> |
-  <a href="https://instagram.com/aaryawear">Instagram</a>
+  <p>
+    <a href="catalog.html">Catalog</a> |
+    <a href="https://wa.me/917381749483" target="_blank">WhatsApp</a> |
+    <a href="https://instagram.com/aaryawear" target="_blank">Instagram</a>
+  </p>
+  <p>© Aarya Wear</p>
 </footer>
 
+<!-- GVIZ FETCH -->
 <script>
-const SHEET_URL = "https://docs.google.com/spreadsheets/d/1gPKWEnklbrODF407hOONX6xYIlGQ9ey-tqptXgkaxpY/gviz/tq?tqx=out:json";
+const SHEET_URL =
+  "https://docs.google.com/spreadsheets/d/1gPKWEnklbrODF407hOONX6xYIlGQ9ey-tqptXgkaxpY/gviz/tq?tqx=out:json";
 
 fetch(SHEET_URL)
-.then(res => res.text())
-.then(text => {
-  const json = JSON.parse(text.substring(47).slice(0,-2));
-  let html="", count=0;
+  .then(res => res.text())
+  .then(text => {
+    const json = JSON.parse(text.substring(47).slice(0, -2));
+    const rows = json.table.rows;
 
-  json.table.rows.forEach(row=>{
-    if(row.c[10]?.v==="Yes" && count<6){
-      const id=row.c[0].v;
-      const name=row.c[1].v;
-      const price=row.c[2].v;
-      const image=row.c[3].v.split("|")[0].trim();
+    let html = "";
+    let count = 0;
 
-      html+=`
-      <div class="product-card">
-        <img src="${image}">
-        <h3>${name}</h3>
-        <div class="price">₹${price}</div>
-        <span class="cod">COD Available</span>
-        <a class="btn" href="product.html?id=${id}">View Details</a>
-      </div>`;
-      count++;
-    }
+    rows.forEach(row => {
+      if (row.c[10]?.v === "Yes" && count < 6) {
+        const id = row.c[0]?.v;
+        const name = row.c[1]?.v;
+        const price = row.c[2]?.v;
+        const image = row.c[3]?.v?.split("|")[0]?.trim();
+        const video = row.c[4]?.v;
+
+        let mediaHTML = "";
+
+        if (video) {
+          mediaHTML = `<video src="${video}" autoplay muted loop playsinline></video>`;
+        } else {
+          mediaHTML = `<img src="${image}" alt="${name}">`;
+        }
+
+        html += `
+          <a href="product.html?id=${id}" class="product-card">
+            ${mediaHTML}
+            <h3>${name}</h3>
+            <div class="price">₹${price}</div>
+          </a>
+        `;
+
+        count++;
+      }
+    });
+
+    document.getElementById("bestseller-list").innerHTML = html;
   });
-
-  document.getElementById("bestsellers").innerHTML=html;
-});
 </script>
 
 </body>
