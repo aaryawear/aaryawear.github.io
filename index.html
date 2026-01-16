@@ -103,9 +103,10 @@ header a {
 /* PRODUCTS (COMPACT CARDS) */
 .products {
   display: grid;
-  gap: 1.2rem;
-  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 0.9rem;
+  grid-template-columns: repeat(2, 1fr);
 }
+
 
 .product-card {
   background: #fff;
@@ -117,26 +118,28 @@ header a {
 .product-card img,
 .product-card video {
   width: 100%;
-  height: 200px;
+  aspect-ratio: 3 / 4;   /* tall kurti look but compact */
   object-fit: cover;
   display: block;
 }
+
 
 .product-card video {
   pointer-events: none;
 }
 
 .product-card h3 {
-  font-size: 0.9rem;
-  margin: 0.45rem 0 0.2rem;
-  padding: 0 0.5rem;
-  line-height: 1.2;
+  font-size: 0.85rem;
+  margin: 0.35rem 0 0.1rem;
+  padding: 0 0.4rem;
+  line-height: 1.15;
 }
 
 .product-card .price {
-  font-size: 0.85rem;
-  padding: 0 0.5rem;
+  font-size: 0.8rem;
+  padding: 0 0.4rem;
 }
+
 
 /* TRUST */
 .trust {
