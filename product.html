@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Product – Aarya Wear</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
+
+<style>
+:root { --beige:#f7f3ee; --brown:#5a3e36; }
+
+* { box-sizing:border-box; margin:0; font-family:Poppins,sans-serif; }
+
+body {
+  background:var(--beige);
+  color:var(--brown);
+  padding-bottom:90px;
+}
+
+a { text-decoration:none; color:inherit; }
+
+.container {
+  width:90%;
+  max-width:900px;
+  margin:auto;
+  padding:1.5rem 0;
+}
+
+/* GALLERY */
+.gallery img {
+  width:100%;
+  border-radius:16px;
+}
+
+.thumbs {
+  display:flex;
+  gap:10px;
+  margin-top:10px;
+  overflow-x:auto;
+}
+
+.thumbs img {
+  width:70px;
+  height:90px;
+  object-fit:cover;
+  border-radius:8px;
+  opacity:.6;
+  cursor:pointer;
+  border:2px solid transparent;
+}
+
+.thumbs img.active {
+  opacity:1;
+  border-color:var(--brown);
+}
+
+/* INFO */
+h1 { font-size:1.5rem; margin-top:1.2rem; }
+.price { font-size:1.2rem; margin:0.4rem 0; }
+.cod { color:green; font-size:0.9rem; margin-bottom:0.5rem; }
+
+/* SHARE */
+.share-row {
+  display:flex;
+  align-items:center;
+  gap:10px;
+  margin:0.6rem 0 1rem;
+}
+
+.icon-btn {
+  background:#fff;
+  border:1px solid var(--brown);
+  border-radius:50%;
+  width:38px;
+  height:38px;
+  cursor:pointer;
+  font-size:1.1rem;
+  color:var(--brown);
+}
+
+.copy-msg {
+  font-size:0.85rem;
+  color:green;
+  display:none;
+}
+
+/* DETAILS */
+.details {
+  background:#fff;
+  border-radius:14px;
+  padding:1.2rem;
+  font-size:0.95rem;
+}
+
+.details p { margin-bottom:0.6rem; }
+
+/* BUY BOX */
+.buy-box {
+  margin-top:1.2rem;
+}
+
+.buy-box a {
+  display:block;
+  text-align:center;
+  background:var(--brown);
+  color:#fff;
+  padding:0.9rem;
+  border-radius:30px;
+  font-size:1rem;
+}
+
+/* SUGGESTIONS */
+.suggestions {
+  margin-top:3rem;
+}
+
+.suggestions h3 {
+  margin-bottom:1rem;
+}
+
+.suggestion-grid {
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:1rem;
+}
+
+.suggestion-card {
+  background:#fff;
+  border-radius:12px;
+  overflow:hidden;
+  text-align:center;
+}
+
+.suggestion-card img {
+  width:100%;
+  height:160px;
+  object-fit:cover;
+}
+
+.suggestion-card p {
+  font-size:0.85rem;
+  padding:0.5rem;
+}
+
+/* STICKY */
+.sticky {
+  position:fixed;
+  bottom:0;
+  left:0;
+  width:100%;
+  background:var(--brown);
+  text-align:center;
+  padding:0.9rem;
+  z-index:99;
+}
+
+.sticky a {
+  color:#fff;
+  font-size:1rem;
+  font-weight:500;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+  <!-- GALLERY -->
+  <div class="gallery">
+    <img id="mainImg" alt="Product Image">
+    <div class="thumbs" id="thumbs"></div>
+  </div>
+
+  <!-- INFO -->
+  <h1 id="name"></h1>
+  <div class="price">₹<span id="price"></span></div>
+  <div class="cod">✔ Cash on Delivery Available</div>
+
+  <!-- SHARE -->
+  <div class="share-row">
+    <button id="copyBtn" class="icon-btn" title="Copy link">🔗</button>
+    <span id="copyMsg" class="copy-msg">Link copied!</span>
+  </div>
+
+  <!-- DETAILS -->
+  <div class="details">
+    <p><b>Fabric:</b> <span id="fabric"></span></p>
+    <p><b>Sizes:</b> <span id="sizes"></span></p>
+    <p><b>Delivery:</b> <span id="delivery"></span></p>
+  </div>
+
+  <!-- BUY INLINE -->
+  <div class="buy-box">
+    <a id="waBtnInline" target="_blank">Order on WhatsApp</a>
+  </div>
+
+  <!-- SUGGESTIONS -->
+  <div class="suggestions">
+    <h3>You may also like</h3>
+    <div id="suggestionList" class="suggestion-grid"></div>
+  </div>
+
+</div>
+
+<!-- STICKY BUTTON -->
+<div class="sticky">
+  <a id="waBtn" target="_blank">Order on WhatsApp</a>
+</div>
+
+<script>
+const SHEET_URL = "https://docs.google.com/spreadsheets/d/SHEET_ID/gviz/tq?tqx=out:json";
+const productId = new URLSearchParams(location.search).get("id");
+
+fetch(SHEET_URL)
+.then(res => res.text())
+.then(text => {
+  const json = JSON.parse(text.substring(47).slice(0,-2));
+  const rows = json.table.rows;
+
+  let currentProduct = null;
+
+  rows.forEach(row => {
+    if (row.c[0].v === productId) {
+      currentProduct = row;
+
+      const name = row.c[1].v;
+      const price = row.c[2].v;
+      const images = row.c[3].v.split("|").map(i => i.trim());
+      const fabric = row.c[6].v;
+      const sizes = row.c[7].v;
+      const delivery = row.c[9].v;
+
+      document.getElementById("name").innerText = name;
+      document.getElementById("price").innerText = price;
+      document.getElementById("fabric").innerText = fabric;
+      document.getElementById("sizes").innerText = sizes;
+      document.getElementById("delivery").innerText = delivery;
+
+      const main = document.getElementById("mainImg");
+      main.src = images[0];
+
+      images.forEach((img, i) => {
+        const t = document.createElement("img");
+        t.src = img;
+        if (i === 0) t.classList.add("active");
+        t.onclick = () => {
+          main.src = img;
+          document.querySelectorAll(".thumbs img").forEach(x => x.classList.remove("active"));
+          t.classList.add("active");
+        };
+        document.getElementById("thumbs").appendChild(t);
+      });
+
+      const msg =
+        `Hi Aarya Wear 🌸\n` +
+        `I want to order this kurti.\n\n` +
+        `Product Name: ${name}\n` +
+        `Size:\n` +
+        `Pincode:`;
+
+      const waLink = `https://wa.me/91XXXXXXXXXX?text=${encodeURIComponent(msg)}`;
+      document.getElementById("waBtn").href = waLink;
+      document.getElementById("waBtnInline").href = waLink;
+    }
+  });
+
+  /* SUGGESTIONS */
+  let sHTML = "", shown = 0;
+  rows.forEach(r => {
+    if (r.c[0].v !== productId && shown < 4) {
+      const sid = r.c[0].v;
+      const sname = r.c[1].v;
+      const simg = r.c[3].v.split("|")[0].trim();
+
+      sHTML += `
+        <a href="product.html?id=${sid}" class="suggestion-card">
+          <img src="${simg}">
+          <p>${sname}</p>
+        </a>
+      `;
+      shown++;
+    }
+  });
+  document.getElementById("suggestionList").innerHTML = sHTML;
+});
+
+/* COPY LINK */
+const copyBtn = document.getElementById("copyBtn");
+const copyMsg = document.getElementById("copyMsg");
+
+copyBtn.onclick = () => {
+  navigator.clipboard.writeText(window.location.href);
+  copyMsg.style.display = "inline";
+  setTimeout(() => copyMsg.style.display = "none", 1500);
+};
+</script>
+
+</body>
+</html>
