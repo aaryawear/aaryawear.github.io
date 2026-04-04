@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet"/>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --cream:#FAF6EF;
+  --gold:#B8892A;
+  --gold-light:#D4A843;
+  --deep:#1C1008;
+  --terracotta:#9B4A2A;
+  --sage:#5A6B50;
+  --border:#DDD0BA;
+}
+body{background:var(--cream);color:var(--deep);font-family:'Jost',sans-serif;overflow-x:hidden}
+
+/* NAV */
+nav{display:flex;justify-content:space-between;align-items:center;padding:1.2rem 4rem;border-bottom:1px solid var(--border);background:var(--cream);position:sticky;top:0;z-index:100}
+.nav-logo{font-family:'Cormorant Garamond',serif;font-size:1.9rem;font-weight:600;letter-spacing:0.06em;color:var(--deep)}
+.nav-logo span{color:var(--gold)}
+.nav-links{display:flex;gap:2.5rem;list-style:none}
+.nav-links a{font-size:0.78rem;letter-spacing:0.14em;text-transform:uppercase;color:var(--deep);text-decoration:none;transition:color 0.3s}
+.nav-links a:hover{color:var(--gold)}
+.nav-right{display:flex;align-items:center;gap:1.5rem}
+.nav-icon{font-size:1.1rem;cursor:pointer;color:var(--deep)}
+.nav-cta{background:var(--gold);color:#fff;font-family:'Jost',sans-serif;font-size:0.72rem;letter-spacing:0.15em;text-transform:uppercase;padding:0.55rem 1.3rem;border:none;cursor:pointer;transition:background 0.3s}
+.nav-cta:hover{background:var(--gold-light)}
+
+/* HERO */
+.hero{display:grid;grid-template-columns:1fr 1fr;min-height:88vh;overflow:hidden}
+.hero-left{display:flex;flex-direction:column;justify-content:center;padding:5rem 4rem;position:relative}
+.hero-left::after{content:'';position:absolute;right:0;top:10%;bottom:10%;width:1px;background:var(--border)}
+.hero-eyebrow{font-size:0.7rem;letter-spacing:0.22em;text-transform:uppercase;color:var(--gold);margin-bottom:1.5rem}
+.hero-title{font-family:'Cormorant Garamond',serif;font-size:4.8rem;font-weight:300;line-height:1.08;color:var(--deep);margin-bottom:1.8rem}
+.hero-title em{font-style:italic;color:var(--terracotta)}
+.hero-subtitle{font-size:0.95rem;line-height:1.9;color:#5A4F3A;max-width:380px;margin-bottom:2.8rem}
+.hero-btns{display:flex;gap:1rem;align-items:center}
+.btn-primary{background:var(--deep);color:var(--cream);font-family:'Jost',sans-serif;font-size:0.75rem;letter-spacing:0.18em;text-transform:uppercase;padding:0.9rem 2.2rem;border:none;cursor:pointer;transition:all 0.3s}
+.btn-primary:hover{background:var(--gold)}
+.btn-secondary{font-size:0.75rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--deep);text-decoration:none;border-bottom:1px solid var(--gold);padding-bottom:2px;cursor:pointer;transition:color 0.3s}
+.btn-secondary:hover{color:var(--gold)}
+.hero-right{position:relative;background:#EDE4D4;overflow:hidden}
+.hero-pattern{position:absolute;inset:0;opacity:0.12;background-image:repeating-linear-gradient(45deg,var(--gold) 0,var(--gold) 1px,transparent 0,transparent 50%);background-size:20px 20px}
+.hero-product-grid{position:absolute;inset:0;display:grid;grid-template-columns:1fr 1fr;grid-template-rows:1fr 1fr;gap:0}
+.hero-product{display:flex;align-items:center;justify-content:center;font-family:'Cormorant Garamond',serif;position:relative;overflow:hidden}
+.hero-p1{background:#D9CAB3;grid-column:1;grid-row:1/3}
+.hero-p2{background:#C8B99A;grid-column:2;grid-row:1}
+.hero-p3{background:#B5A485;grid-column:2;grid-row:2}
+.product-placeholder{display:flex;flex-direction:column;align-items:center;gap:0.8rem;padding:2rem}
+.kurti-silhouette{width:80px;opacity:0.5}
+.product-tag{font-size:0.7rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--deep);opacity:0.6}
+.hero-badge{position:absolute;bottom:2.5rem;right:2.5rem;background:var(--gold);color:#fff;width:80px;height:80px;border-radius:50%;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center}
+.hero-badge span:first-child{font-family:'Cormorant Garamond',serif;font-size:1.5rem;font-weight:600}
+.hero-badge span:last-child{font-size:0.55rem;letter-spacing:0.1em;text-transform:uppercase}
+
+/* ANNOUNCEMENT */
+.announce{background:var(--deep);color:var(--cream);text-align:center;padding:0.75rem;font-size:0.72rem;letter-spacing:0.18em;text-transform:uppercase}
+.announce span{color:var(--gold-light)}
+
+/* MARQUEE */
+.marquee-wrap{border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:1rem 0;overflow:hidden}
+.marquee-inner{display:flex;gap:3rem;white-space:nowrap;animation:marquee 22s linear infinite}
+.marquee-item{font-family:'Cormorant Garamond',serif;font-size:1.15rem;font-style:italic;color:var(--gold);display:flex;align-items:center;gap:1rem}
+.marquee-dot{width:5px;height:5px;background:var(--terracotta);border-radius:50%;display:inline-block}
+@keyframes marquee{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+
+/* COLLECTIONS */
+.section{padding:5rem 4rem}
+.section-header{display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:3rem}
+.section-title{font-family:'Cormorant Garamond',serif;font-size:2.8rem;font-weight:300;color:var(--deep)}
+.section-title em{font-style:italic;color:var(--terracotta)}
+.see-all{font-size:0.72rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--gold);text-decoration:none;border-bottom:1px solid currentColor;padding-bottom:1px;cursor:pointer}
+
+.collections-grid{display:grid;grid-template-columns:2fr 1fr 1fr;gap:1.2rem}
+.coll-card{position:relative;overflow:hidden;cursor:pointer}
+.coll-card:hover .coll-img{transform:scale(1.04)}
+.coll-img{height:480px;transition:transform 0.6s cubic-bezier(.25,.8,.25,1);display:flex;align-items:flex-end;padding:1.8rem}
+.coll-card:nth-child(2) .coll-img,.coll-card:nth-child(3) .coll-img{height:230px}
+.coll-card:nth-child(2) .coll-img{margin-bottom:1.2rem}
+.coll-stack{display:flex;flex-direction:column;gap:0}
+.c1{background:linear-gradient(160deg,#D4C4A0 0%,#B5975C 100%)}
+.c2{background:linear-gradient(140deg,#C4B0D0 0%,#8B6AA0 100%)}
+.c3{background:linear-gradient(140deg,#C8D4B8 0%,#7A9060 100%)}
+.c4{background:linear-gradient(140deg,#D4B4A0 0%,#A06040 100%)}
+.c5{background:linear-gradient(140deg,#B8C8D8 0%,#5878A0 100%)}
+.coll-info{background:rgba(28,16,8,0.72);backdrop-filter:blur(2px);padding:1rem 1.2rem;color:var(--cream)}
+.coll-name{font-family:'Cormorant Garamond',serif;font-size:1.35rem;font-weight:400}
+.coll-count{font-size:0.68rem;letter-spacing:0.14em;text-transform:uppercase;opacity:0.7;margin-top:0.2rem}
+
+/* KURTI ILLUSTRATIONS */
+.silhouette{width:60px;height:160px;margin:auto;margin-top:40px;opacity:0.35}
+
+/* FEATURED PRODUCTS */
+.products-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1.5rem}
+.prod-card{cursor:pointer}
+.prod-card:hover .prod-img-wrap::after{opacity:1}
+.prod-img-wrap{position:relative;margin-bottom:1rem;overflow:hidden}
+.prod-img-wrap::after{content:'Quick View';position:absolute;inset:0;background:rgba(28,16,8,0.5);color:var(--cream);display:flex;align-items:center;justify-content:center;font-size:0.72rem;letter-spacing:0.18em;text-transform:uppercase;opacity:0;transition:opacity 0.3s;cursor:pointer}
+.prod-img{height:320px;display:flex;align-items:center;justify-content:center}
+.p1{background:#E8DECE}
+.p2{background:#DDD0C4}
+.p3{background:#D8C8B8}
+.p4{background:#D4C0A8}
+.prod-name{font-family:'Cormorant Garamond',serif;font-size:1.1rem;color:var(--deep);margin-bottom:0.3rem}
+.prod-fabric{font-size:0.7rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--sage);margin-bottom:0.4rem}
+.prod-price{font-size:0.95rem;color:var(--deep);font-weight:500}
+.prod-price .original{text-decoration:line-through;color:#999;font-size:0.82rem;margin-right:0.4rem;font-weight:400}
+.prod-colors{display:flex;gap:6px;margin-top:0.6rem}
+.color-dot{width:14px;height:14px;border-radius:50%;border:1.5px solid var(--border)}
+
+/* BRAND PROMISE */
+.brand-strip{background:var(--deep);padding:4rem;display:grid;grid-template-columns:repeat(4,1fr);gap:2rem;text-align:center}
+.promise-item{}
+.promise-icon{font-size:1.6rem;margin-bottom:1rem;opacity:0.8}
+.promise-title{font-family:'Cormorant Garamond',serif;font-size:1.15rem;color:var(--cream);margin-bottom:0.5rem}
+.promise-text{font-size:0.78rem;line-height:1.7;color:rgba(250,246,239,0.55);letter-spacing:0.02em}
+
+/* CRAFT SECTION */
+.craft{padding:5rem 4rem;display:grid;grid-template-columns:1fr 1fr;gap:6rem;align-items:center}
+.craft-visual{position:relative;height:520px;background:#E8DCCA;overflow:hidden;display:flex;align-items:center;justify-content:center}
+.craft-pattern{position:absolute;inset:0;opacity:0.08;background-image:repeating-linear-gradient(0deg,var(--gold) 0,var(--gold) 1px,transparent 0,transparent 30px),repeating-linear-gradient(90deg,var(--gold) 0,var(--gold) 1px,transparent 0,transparent 30px)}
+.craft-badge-tl{position:absolute;top:2rem;left:2rem;background:var(--gold);color:#fff;padding:0.6rem 1rem;font-size:0.65rem;letter-spacing:0.15em;text-transform:uppercase}
+.craft-content .eyebrow{font-size:0.7rem;letter-spacing:0.22em;text-transform:uppercase;color:var(--gold);margin-bottom:1.2rem}
+.craft-content h2{font-family:'Cormorant Garamond',serif;font-size:3rem;font-weight:300;line-height:1.15;color:var(--deep);margin-bottom:1.5rem}
+.craft-content p{font-size:0.9rem;line-height:1.95;color:#5A4F3A;margin-bottom:2rem}
+.craft-stats{display:flex;gap:3rem}
+.stat-item .num{font-family:'Cormorant Garamond',serif;font-size:2.5rem;font-weight:300;color:var(--terracotta)}
+.stat-item .label{font-size:0.7rem;letter-spacing:0.12em;text-transform:uppercase;color:#888;margin-top:0.2rem}
+
+/* TESTIMONIALS */
+.testimonials{background:#F0E8D8;padding:5rem 4rem}
+.test-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2rem;margin-top:3rem}
+.test-card{background:var(--cream);padding:2rem;border-left:3px solid var(--gold)}
+.test-stars{color:var(--gold);font-size:0.85rem;margin-bottom:1rem;letter-spacing:2px}
+.test-text{font-family:'Cormorant Garamond',serif;font-size:1.05rem;font-style:italic;line-height:1.7;color:var(--deep);margin-bottom:1.2rem}
+.test-author{font-size:0.72rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--sage)}
+
+/* NEWSLETTER */
+.newsletter{padding:5rem 4rem;text-align:center;border-top:1px solid var(--border)}
+.newsletter h2{font-family:'Cormorant Garamond',serif;font-size:2.5rem;font-weight:300;margin-bottom:0.8rem}
+.newsletter p{font-size:0.88rem;color:#5A4F3A;margin-bottom:2rem}
+.nl-form{display:flex;justify-content:center;gap:0;max-width:440px;margin:auto}
+.nl-input{flex:1;padding:0.9rem 1.2rem;border:1px solid var(--border);background:transparent;font-family:'Jost',sans-serif;font-size:0.85rem;color:var(--deep);outline:none}
+.nl-btn{background:var(--gold);color:#fff;border:none;padding:0.9rem 1.6rem;font-family:'Jost',sans-serif;font-size:0.72rem;letter-spacing:0.15em;text-transform:uppercase;cursor:pointer;transition:background 0.3s;white-space:nowrap}
+.nl-btn:hover{background:var(--deep)}
+
+/* FOOTER */
+footer{background:var(--deep);color:var(--cream);padding:4rem 4rem 2rem}
+.footer-top{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:3rem;margin-bottom:3rem;border-bottom:1px solid rgba(255,255,255,0.1);padding-bottom:3rem}
+.footer-brand{font-family:'Cormorant Garamond',serif;font-size:1.8rem;font-weight:400;color:var(--cream);margin-bottom:1rem}
+.footer-brand span{color:var(--gold-light)}
+.footer-desc{font-size:0.8rem;line-height:1.8;color:rgba(250,246,239,0.5);max-width:240px}
+.footer-col h4{font-size:0.68rem;letter-spacing:0.18em;text-transform:uppercase;color:var(--gold-light);margin-bottom:1.2rem}
+.footer-col ul{list-style:none}
+.footer-col li{margin-bottom:0.7rem}
+.footer-col a{font-size:0.82rem;color:rgba(250,246,239,0.55);text-decoration:none;transition:color 0.3s}
+.footer-col a:hover{color:var(--cream)}
+.footer-bottom{display:flex;justify-content:space-between;align-items:center;font-size:0.72rem;color:rgba(250,246,239,0.35);letter-spacing:0.08em}
+.social-links{display:flex;gap:1rem}
+.social-links a{color:rgba(250,246,239,0.5);text-decoration:none;font-size:0.75rem;letter-spacing:0.1em;text-transform:uppercase;transition:color 0.3s}
+.social-links a:hover{color:var(--gold-light)}
+</style>
+</head>
+<body>
+
+<!-- ANNOUNCEMENT BAR -->
+<div class="announce">New arrivals: <span>Summer Festive Collection 2026</span> &nbsp;·&nbsp; Free shipping on orders above ₹999 &nbsp;·&nbsp; Use code <span>AARYAWELCOME</span> for 10% off</div>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">Aaryawear<span>.</span></div>
+  <ul class="nav-links">
+    <li><a href="#">New Arrivals</a></li>
+    <li><a href="#">Collections</a></li>
+    <li><a href="#">Fabrics</a></li>
+    <li><a href="#">Occasion</a></li>
+    <li><a href="#">Our Story</a></li>
+  </ul>
+  <div class="nav-right">
+    <span class="nav-icon">♡</span>
+    <span class="nav-icon">⊕</span>
+    <button class="nav-cta">Shop Now</button>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-left">
+    <div class="hero-eyebrow">Summer Festive 2026 &nbsp;·&nbsp; Handcrafted in India</div>
+    <h1 class="hero-title">Where Tradition<br>Meets <em>Timeless</em><br>Elegance</h1>
+    <p class="hero-subtitle">Every kurti from Aaryawear is a conversation between heritage and the modern woman — crafted from fine Indian fabrics, adorned with artisanal embroidery.</p>
+    <div class="hero-btns">
+      <button class="btn-primary">Explore Collection</button>
+      <a class="btn-secondary">View Lookbook</a>
+    </div>
+  </div>
+  <div class="hero-right">
+    <div class="hero-pattern"></div>
+    <div class="hero-product-grid">
+      <div class="hero-product hero-p1 c1">
+        <div class="product-placeholder">
+          <svg class="kurti-silhouette" viewBox="0 0 80 180" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M30 10 Q40 2 50 10 L65 30 L70 60 L60 65 L60 170 L20 170 L20 65 L10 60 L15 30 Z" fill="#5A3A1A" opacity="0.6"/>
+            <path d="M30 10 Q40 6 50 10 L55 20 Q40 28 25 20 Z" fill="#8B5E2A" opacity="0.7"/>
+            <circle cx="40" cy="8" r="5" fill="#5A3A1A" opacity="0.5"/>
+          </svg>
+          <span class="product-tag">Banarasi Silk</span>
+        </div>
+      </div>
+      <div class="hero-product hero-p2 c2">
+        <div class="product-placeholder">
+          <svg viewBox="0 0 60 130" style="width:50px;opacity:0.4" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M22 8 Q30 2 38 8 L48 22 L52 48 L44 52 L44 128 L16 128 L16 52 L8 48 L12 22 Z" fill="#3A2060"/>
+            <path d="M22 8 Q30 5 38 8 L42 16 Q30 22 18 16 Z" fill="#5A3080"/>
+          </svg>
+          <span class="product-tag">Lucknowi Chikankari</span>
+        </div>
+      </div>
+      <div class="hero-product hero-p3 c3">
+        <div class="product-placeholder">
+          <svg viewBox="0 0 60 130" style="width:50px;opacity:0.4" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M22 8 Q30 2 38 8 L48 22 L52 48 L44 52 L44 128 L16 128 L16 52 L8 48 L12 22 Z" fill="#2A4A20"/>
+            <path d="M22 8 Q30 5 38 8 L42 16 Q30 22 18 16 Z" fill="#4A6A38"/>
+          </svg>
+          <span class="product-tag">Cotton Mul</span>
+        </div>
+      </div>
+    </div>
+    <div class="hero-badge">
+      <span>200+</span>
+      <span>Styles</span>
+    </div>
+  </div>
+</section>
+
+<!-- MARQUEE -->
+<div class="marquee-wrap">
+  <div class="marquee-inner">
+    <span class="marquee-item"><span class="marquee-dot"></span> Banarasi Silk Kurtis</span>
+    <span class="marquee-item"><span class="marquee-dot"></span> Chikankari Embroidery</span>
+    <span class="marquee-item"><span class="marquee-dot"></span> Block Print Cotton</span>
+    <span class="marquee-item"><span class="marquee-dot"></span> Festive Anarkalis</span>
+    <span class="marquee-item"><span class="marquee-dot"></span> Handwoven Chanderi</span>
+    <span class="marquee-item"><span class="marquee-dot"></span> Mirror Work Kurtis</span>
+    <span class="marquee-item"><span class="marquee-dot"></span> Banarasi Silk Kurtis</span>
+    <span class="marquee-item"><span class="marquee-dot"></span> Chikankari Embroidery</span>
+    <span class="marquee-item"><span class="marquee-dot"></span> Block Print Cotton</span>
+    <span class="marquee-item"><span class="marquee-dot"></span> Festive Anarkalis</span>
+    <span class="marquee-item"><span class="marquee-dot"></span> Handwoven Chanderi</span>
+    <span class="marquee-item"><span class="marquee-dot"></span> Mirror Work Kurtis</span>
+  </div>
+</div>
+
+<!-- COLLECTIONS -->
+<section class="section">
+  <div class="section-header">
+    <h2 class="section-title">Shop by <em>Collection</em></h2>
+    <a class="see-all">View All Collections</a>
+  </div>
+  <div class="collections-grid">
+    <div class="coll-card">
+      <div class="coll-img c1" style="height:480px;align-items:flex-end;padding:1.8rem">
+        <div class="coll-info">
+          <div class="coll-name">Festive Heritage</div>
+          <div class="coll-count">48 Styles</div>
+        </div>
+      </div>
+    </div>
+    <div class="coll-stack" style="display:flex;flex-direction:column;gap:1.2rem">
+      <div class="coll-card">
+        <div class="coll-img c2" style="height:225px;align-items:flex-end;padding:1.2rem">
+          <div class="coll-info">
+            <div class="coll-name">Everyday Grace</div>
+            <div class="coll-count">62 Styles</div>
+          </div>
+        </div>
+      </div>
+      <div class="coll-card">
+        <div class="coll-img c3" style="height:225px;align-items:flex-end;padding:1.2rem">
+          <div class="coll-info">
+            <div class="coll-name">Summer Bloom</div>
+            <div class="coll-count">35 Styles</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BRAND PROMISE -->
+<div class="brand-strip">
+  <div class="promise-item">
+    <div class="promise-icon">✦</div>
+    <div class="promise-title">Handcrafted Quality</div>
+    <div class="promise-text">Every piece is crafted by skilled artisans using traditional techniques passed through generations.</div>
+  </div>
+  <div class="promise-item">
+    <div class="promise-icon">⟳</div>
+    <div class="promise-title">Easy Returns</div>
+    <div class="promise-text">Hassle-free 15-day returns because we believe you should love what you wear.</div>
+  </div>
+  <div class="promise-item">
+    <div class="promise-icon">◈</div>
+    <div class="promise-title">Authentic Fabrics</div>
+    <div class="promise-text">Sourced directly from weaving clusters in Varanasi, Lucknow, and Jaipur.</div>
+  </div>
+  <div class="promise-item">
+    <div class="promise-icon">↯</div>
+    <div class="promise-title">Fast Shipping</div>
+    <div class="promise-text">Pan-India delivery in 3–5 days. Free shipping on orders above ₹999.</div>
+  </div>
+</div>
+
+<!-- FEATURED PRODUCTS -->
+<section class="section">
+  <div class="section-header">
+    <h2 class="section-title">New <em>Arrivals</em></h2>
+    <a class="see-all">Shop All</a>
+  </div>
+  <div class="products-grid">
+    <div class="prod-card">
+      <div class="prod-img-wrap">
+        <div class="prod-img p1">
+          <svg viewBox="0 0 80 180" style="width:70px;opacity:0.5" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M30 14 Q40 6 50 14 L68 36 L72 68 L62 73 L62 174 L18 174 L18 73 L8 68 L12 36 Z" fill="#6B4A2A"/>
+            <path d="M30 14 Q40 9 50 14 L56 26 Q40 34 24 26 Z" fill="#8B6A3A"/>
+            <circle cx="40" cy="11" r="6" fill="#5A3A1A"/>
+            <ellipse cx="40" cy="110" rx="12" ry="20" fill="none" stroke="#8B6A3A" stroke-width="1.5" opacity="0.5"/>
+            <path d="M28 85 Q40 95 52 85" stroke="#8B6A3A" stroke-width="1" fill="none" opacity="0.5"/>
+          </svg>
+        </div>
+      </div>
+      <div class="prod-fabric">Banarasi Silk</div>
+      <div class="prod-name">Zari Weave Kurti</div>
+      <div class="prod-price"><span class="original">₹3,299</span>₹2,599</div>
+      <div class="prod-colors">
+        <div class="color-dot" style="background:#8B4513"></div>
+        <div class="color-dot" style="background:#2F4F4F"></div>
+        <div class="color-dot" style="background:#8B6914"></div>
+      </div>
+    </div>
+    <div class="prod-card">
+      <div class="prod-img-wrap">
+        <div class="prod-img p2">
+          <svg viewBox="0 0 80 200" style="width:65px;opacity:0.45" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M28 12 Q40 4 52 12 L72 40 L76 80 L64 86 L64 196 L16 196 L16 86 L4 80 L8 40 Z" fill="#4A2A6A"/>
+            <path d="M28 12 Q40 8 52 12 L58 26 Q40 36 22 26 Z" fill="#6A4A8A"/>
+            <circle cx="40" cy="9" r="6" fill="#3A1A5A"/>
+            <path d="M20 100 Q40 110 60 100" stroke="#7A5A9A" stroke-width="1" fill="none" opacity="0.6"/>
+            <path d="M20 115 Q40 125 60 115" stroke="#7A5A9A" stroke-width="1" fill="none" opacity="0.6"/>
+          </svg>
+        </div>
+      </div>
+      <div class="prod-fabric">Lucknowi Chikankari</div>
+      <div class="prod-name">Floral Embroidered Kurti</div>
+      <div class="prod-price">₹1,899</div>
+      <div class="prod-colors">
+        <div class="color-dot" style="background:#E8D5E8"></div>
+        <div class="color-dot" style="background:#D5E8E0"></div>
+        <div class="color-dot" style="background:#F5E6D5"></div>
+      </div>
+    </div>
+    <div class="prod-card">
+      <div class="prod-img-wrap">
+        <div class="prod-img p3">
+          <svg viewBox="0 0 80 180" style="width:68px;opacity:0.45" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M28 12 Q40 4 52 12 L68 34 L72 66 L60 72 L60 174 L20 174 L20 72 L8 66 L12 34 Z" fill="#3A5A2A"/>
+            <path d="M28 12 Q40 8 52 12 L56 22 Q40 30 24 22 Z" fill="#5A7A4A"/>
+            <circle cx="40" cy="9" r="6" fill="#2A4A1A"/>
+            <rect x="28" y="85" width="24" height="4" fill="#5A7A4A" opacity="0.4" rx="2"/>
+            <rect x="26" y="100" width="28" height="4" fill="#5A7A4A" opacity="0.4" rx="2"/>
+            <rect x="28" y="115" width="24" height="4" fill="#5A7A4A" opacity="0.4" rx="2"/>
+          </svg>
+        </div>
+      </div>
+      <div class="prod-fabric">Chanderi Cotton</div>
+      <div class="prod-name">Block Print A-Line</div>
+      <div class="prod-price"><span class="original">₹1,699</span>₹1,399</div>
+      <div class="prod-colors">
+        <div class="color-dot" style="background:#556B2F"></div>
+        <div class="color-dot" style="background:#8B4513"></div>
+        <div class="color-dot" style="background:#4682B4"></div>
+      </div>
+    </div>
+    <div class="prod-card">
+      <div class="prod-img-wrap">
+        <div class="prod-img p4">
+          <svg viewBox="0 0 80 200" style="width:68px;opacity:0.45" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M24 10 Q40 2 56 10 L76 42 L80 90 L65 98 L65 196 L15 196 L15 98 L0 90 L4 42 Z" fill="#6A3A1A"/>
+            <path d="M24 10 Q40 6 56 10 L62 24 Q40 34 18 24 Z" fill="#8A5A3A"/>
+            <circle cx="40" cy="7" r="7" fill="#5A2A0A"/>
+            <ellipse cx="40" cy="130" rx="18" ry="28" fill="none" stroke="#8A5A3A" stroke-width="1.5" opacity="0.5"/>
+          </svg>
+        </div>
+      </div>
+      <div class="prod-fabric">Pure Cotton Mul</div>
+      <div class="prod-name">Mirror Work Anarkali</div>
+      <div class="prod-price">₹2,199</div>
+      <div class="prod-colors">
+        <div class="color-dot" style="background:#800020"></div>
+        <div class="color-dot" style="background:#1C3A5A"></div>
+        <div class="color-dot" style="background:#2D5A27"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CRAFT STORY -->
+<section class="craft">
+  <div class="craft-visual">
+    <div class="craft-pattern"></div>
+    <div class="craft-badge-tl">Est. 2018 · Odisha</div>
+    <svg viewBox="0 0 200 280" style="width:160px;opacity:0.35;position:relative;z-index:1" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M70 30 Q100 10 130 30 L170 80 L180 150 L155 162 L155 278 L45 278 L45 162 L20 150 L30 80 Z" fill="#5A3A1A"/>
+      <path d="M70 30 Q100 20 130 30 L142 55 Q100 72 58 55 Z" fill="#8B6A3A"/>
+      <circle cx="100" cy="24" r="14" fill="#5A3A1A"/>
+      <ellipse cx="100" cy="190" rx="35" ry="52" fill="none" stroke="#8B6A3A" stroke-width="2.5" opacity="0.6"/>
+      <path d="M65 130 Q100 145 135 130" stroke="#8B6A3A" stroke-width="2" fill="none" opacity="0.6"/>
+      <path d="M60 108 Q100 124 140 108" stroke="#B8892A" stroke-width="1.5" fill="none" opacity="0.4"/>
+    </svg>
+  </div>
+  <div class="craft-content">
+    <div class="eyebrow">Our Philosophy</div>
+    <h2>Crafted with<br>Heritage &amp; Heart</h2>
+    <p>Aaryawear was born from a belief that Indian women deserve clothing that honours their roots while celebrating their modernity. Each kurti is a collaboration between tradition and today — designed in Bhubaneswar, woven by master artisans across India.</p>
+    <p>We work directly with weaving clusters in Varanasi, embroidery workshops in Lucknow, and block-print ateliers in Jaipur to bring you authentic craftsmanship at honest prices.</p>
+    <div class="craft-stats">
+      <div class="stat-item">
+        <div class="num">12K+</div>
+        <div class="label">Happy customers</div>
+      </div>
+      <div class="stat-item">
+        <div class="num">200+</div>
+        <div class="label">Artisan families</div>
+      </div>
+      <div class="stat-item">
+        <div class="num">8</div>
+        <div class="label">Craft traditions</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="testimonials">
+  <div class="section-header">
+    <h2 class="section-title">What Our <em>Community</em> Says</h2>
+  </div>
+  <div class="test-grid">
+    <div class="test-card">
+      <div class="test-stars">★★★★★</div>
+      <div class="test-text">"I wore the Banarasi silk kurti to my sister's mehendi and received more compliments than the bride! The quality is absolutely stunning."</div>
+      <div class="test-author">Priya Mishra · Delhi</div>
+    </div>
+    <div class="test-card">
+      <div class="test-stars">★★★★★</div>
+      <div class="test-text">"Finally a brand that understands ethnic wear doesn't have to be uncomfortable. The cotton mul anarkali is my everyday favourite now."</div>
+      <div class="test-author">Deepa Nair · Kochi</div>
+    </div>
+    <div class="test-card">
+      <div class="test-stars">★★★★★</div>
+      <div class="test-text">"The Chikankari work is incredibly detailed and delicate. You can tell real artisans made this with love. Worth every rupee."</div>
+      <div class="test-author">Anjali Sharma · Bhubaneswar</div>
+    </div>
+  </div>
+</section>
+
+<!-- NEWSLETTER -->
+<section class="newsletter">
+  <h2>Join the Aaryawear <em style="font-family:'Cormorant Garamond',serif;font-style:italic;color:var(--terracotta)">Circle</em></h2>
+  <p>Be the first to discover new collections, artisan stories, and exclusive member offers.</p>
+  <div class="nl-form">
+    <input class="nl-input" type="email" placeholder="Your email address" />
+    <button class="nl-btn">Subscribe</button>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-top">
+    <div>
+      <div class="footer-brand">Aaryawear<span>.</span></div>
+      <div class="footer-desc">Traditional Indian kurtis crafted with love, artisanship, and authenticity. Rooted in heritage, designed for today.</div>
+    </div>
+    <div class="footer-col">
+      <h4>Shop</h4>
+      <ul>
+        <li><a href="#">New Arrivals</a></li>
+        <li><a href="#">Festive Collection</a></li>
+        <li><a href="#">Everyday Wear</a></li>
+        <li><a href="#">Plus Size</a></li>
+        <li><a href="#">Sale</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Help</h4>
+      <ul>
+        <li><a href="#">Size Guide</a></li>
+        <li><a href="#">Track Order</a></li>
+        <li><a href="#">Returns &amp; Exchange</a></li>
+        <li><a href="#">Care Guide</a></li>
+        <li><a href="#">FAQs</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Company</h4>
+      <ul>
+        <li><a href="#">Our Story</a></li>
+        <li><a href="#">Artisan Network</a></li>
+        <li><a href="#">Sustainability</a></li>
+        <li><a href="#">Press</a></li>
+        <li><a href="#">Contact Us</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2026 Aaryawear. All rights reserved.</span>
+    <div class="social-links">
+      <a href="#">Instagram</a>
+      <a href="#">Pinterest</a>
+      <a href="#">Facebook</a>
+      <a href="#">WhatsApp</a>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
